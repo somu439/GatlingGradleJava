@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id("io.gatling.gradle") version "3.9.3"
+
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+dependencies {
+    implementation 'io.gatling:gatling-core:3.9.1'
+    implementation 'io.gatling:gatling-core-java:3.9.1'
+    implementation 'io.gatling:gatling-http:3.9.1'
+    implementation 'io.gatling:gatling-http-java:3.9.1'
+    implementation 'io.gatling.highcharts:gatling-charts-highcharts:3.9.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
