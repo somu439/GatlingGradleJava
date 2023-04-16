@@ -1,27 +1,29 @@
 plugins {
     id 'java'
-    id("io.gatling.gradle") version "3.9.3"
-
+    // The following line allows to load io.gatling.gradle plugin and directly apply it
+    id 'io.gatling.gradle' version '3.9.3.1'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
-
-dependencies {
-    implementation 'io.gatling:gatling-core:3.9.1'
-    implementation 'io.gatling:gatling-core-java:3.9.1'
-    implementation 'io.gatling:gatling-http:3.9.1'
-    implementation 'io.gatling:gatling-http-java:3.9.1'
-    implementation 'io.gatling.highcharts:gatling-charts-highcharts:3.9.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-}
-
-test {
-    useJUnitPlatform()
+gatling {
+    // WARNING: options below only work when logback config file isn't provided
+    logLevel = 'WARN' // logback root level
+    logHttp = 'NONE' // set to 'ALL' for all HTTP traffic in TRACE, 'FAILURES' for failed HTTP traffic in DEBUG
+    enterprise {
+        // Enterprise Cloud (https://cloud.gatling.io/) configuration reference: https://gatling.io/docs/gatling/reference/current/extensions/gradle_plugin/#working-with-gatling-enterprise-cloud
+        // Enterprise Self-Hosted configuration reference: https://gatling.io/docs/gatling/reference/current/extensions/gradle_plugin/#working-with-gatling-enterprise-self-hosted
+    }
 }
 
 repositories {
-    jcenter()
     mavenCentral()
 }
+
+//dependencies {
+//    implementation 'io.gatling:gatling-core:3.9.1'
+//    implementation 'io.gatling:gatling-core-java:3.9.1'
+//    implementation 'io.gatling:gatling-http:3.9.1'
+//    implementation 'io.gatling:gatling-http-java:3.9.1'
+//    implementation 'io.gatling.highcharts:gatling-charts-highcharts:3.9.1'
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+//}
