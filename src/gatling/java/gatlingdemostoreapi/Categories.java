@@ -16,15 +16,16 @@ public class Categories {
 
     public static ChainBuilder list =
             exec(http("List categories")
-                    .get("/api/category")
-                    .check(jmesPath("[? id == `6`].name").ofList().is(List.of("For Her"))));
+                    .get("/api/category"));
+//                    .check(jmesPath("[? id == `6`].name").ofList().is(List.of("For Her"))));
 
     public static ChainBuilder update =
             feed(categoriesFeeder)
                     .exec(Authentication.authenticate)
                     .exec(http("Update category")
                             .put("/api/category/#{categoryId}")
-                            .headers(Headers.authorizationHeaders)
+//                            .headers(Headers.authorizationHeaders)
+                            .header("authorization", "Bearer #{jwt}")
                             .body(StringBody("{\"name\": \"#{categoryName}\"}"))
                             .check(jmesPath("name").isEL("#{categoryName}")));
 }

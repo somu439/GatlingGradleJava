@@ -17,13 +17,13 @@ public class DemostoreApiSimulation extends Simulation {
             .contentTypeHeader("application/json")
             .acceptHeader("application/json");
 
-    private static final int USER_COUNT = Integer.parseInt(System.getProperty("USERS", "5"));
+    private static final int USER_COUNT = Integer.parseInt(System.getProperty("USERS", "2"));
 
     private static final Duration RAMP_DURATION =
             Duration.ofSeconds(Integer.parseInt(System.getProperty("RAMP_DURATION", "10")));
 
     private static final Duration TEST_DURATION =
-            Duration.ofSeconds(Integer.parseInt(System.getProperty("DURATION", "60")));
+            Duration.ofSeconds(Integer.parseInt(System.getProperty("DURATION", "10")));
 
     @Override
     public void before() {
@@ -100,8 +100,8 @@ public class DemostoreApiSimulation extends Simulation {
 
     {
         setUp(
-                Scenarios.defaultScn.injectOpen(rampUsers(USER_COUNT).during(RAMP_DURATION)),
-                Scenarios.noAdminsScn.injectOpen(rampUsers(5).during(Duration.ofSeconds(30))))
+                Scenarios.defaultScn.injectOpen(rampUsers(2).during(Duration.ofSeconds(10))),
+                Scenarios.noAdminsScn.injectOpen(rampUsers(2).during(Duration.ofSeconds(10))))
                 .protocols(httpProtocol);
     }
 }

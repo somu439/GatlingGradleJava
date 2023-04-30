@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     // The following line allows to load io.gatling.gradle plugin and directly apply it
-    id 'io.gatling.gradle' version '3.9.3.1'
+    id 'io.gatling.gradle' version '3.9.3'
 }
 
 gatling {
@@ -16,14 +16,25 @@ gatling {
 
 repositories {
     mavenCentral()
+//    mavenLocal()
 }
 
-//dependencies {
-//    implementation 'io.gatling:gatling-core:3.9.1'
-//    implementation 'io.gatling:gatling-core-java:3.9.1'
-//    implementation 'io.gatling:gatling-http:3.9.1'
-//    implementation 'io.gatling:gatling-http-java:3.9.1'
-//    implementation 'io.gatling.highcharts:gatling-charts-highcharts:3.9.1'
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+//bootJar {
+//    enabled = false
 //}
+
+jar {
+    enabled = true
+}
+dependencies {
+    implementation 'io.gatling:gatling-core:3.9.3'
+    implementation 'io.gatling:gatling-core-java:3.9.3'
+    implementation 'io.gatling:gatling-http:3.9.3'
+    implementation 'io.gatling:gatling-http-java:3.9.1'
+    implementation 'io.gatling.highcharts:gatling-charts-highcharts:3.9.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'io.gatling:gatling-http-java:3.8.4'
+//    apply from: 'gradle/ext/common.gradle'
+
+}

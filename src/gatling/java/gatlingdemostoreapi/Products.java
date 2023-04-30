@@ -52,7 +52,8 @@ public class Products {
                     })
                     .exec(http("Update product #{productName}")
                             .put("/api/product/#{productId}")
-                            .headers(Headers.authorizationHeaders)
+//                            .headers(Headers.authorizationHeaders)
+                            .header("authorization", "Bearer #{jwt}")
                             .body(ElFileBody("gatlingdemostoreapi/demostoreapisimulation/create-product.json"))
                             .check(jmesPath("price").isEL("#{productPrice}")));
 
@@ -61,6 +62,7 @@ public class Products {
                     .feed(productsFeeder)
                     .exec(http("Create product #{productName}")
                             .post("/api/product")
-                            .headers(Headers.authorizationHeaders)
+//                            .headers(Headers.authorizationHeaders)
+                            .header("authorization", "Bearer #{jwt}")
                             .body(ElFileBody("gatlingdemostoreapi/demostoreapisimulation/create-product.json")));
 }
